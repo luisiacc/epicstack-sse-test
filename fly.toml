@@ -1,0 +1,36 @@
+app = "epicstacksse-cf20"
+primary_region = "mia"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = [ ]
+
+[experimental]
+allowed_public_ports = [ ]
+auto_rollback = true
+
+[mounts]
+source = "data"
+destination = "/data"
+
+[deploy]
+release_command = "node ./other/sentry-create-release"
+
+[[services]]
+internal_port = 8080
+processes = [ "app" ]
+protocol = "tcp"
+script_checks = [ ]
+
+  [services.concurrency]
+  hard_limit = 100
+  soft_limit = 80
+  type = "requests"
+
+  [[services.ports]]
+  handlers = [ "http" ]
+  port = 80
+  force_https = true
+
+  [[services.ports]]
+  handlers = [ "tls", "http" ]
+  port = 443
