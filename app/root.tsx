@@ -63,7 +63,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 	]
 }
 
-export async function loader({ request }: DataFunctionArgs) {
+export async function loader() {
 	return json({})
 }
 
@@ -71,7 +71,7 @@ const ThemeFormSchema = z.object({
 	theme: z.enum(['system', 'light', 'dark']),
 })
 
-export async function action({ request }: DataFunctionArgs) {
+export async function action() {
 	return json({ success: true })
 }
 
