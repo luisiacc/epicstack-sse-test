@@ -146,7 +146,7 @@ app.all(
 		: getRequestHandler(build),
 )
 
-const desiredPort = Number(process.env.PORT || 8080)
+const desiredPort = Number(process.env.INTERNAL_PORT || 8080)
 const portToUse = await getPort({
 	port: portNumbers(desiredPort, desiredPort + 100),
 })
